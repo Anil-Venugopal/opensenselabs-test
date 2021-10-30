@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './app.css';
 
 
- const CreateTask=(props) =>{
+ const AddTask=(props) =>{
      const {addTask}=props;
     const [value, setValue] = useState("");
 
@@ -28,4 +28,4 @@ import './app.css';
 }
 
 
-export default CreateTask;
+export default AddTask;
