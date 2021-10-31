@@ -8,6 +8,7 @@ const Task = (props) => {
   return (
     <div
       className="task"
+      //if a task is completed strike it for easy understanding
       style={{ textDecoration: task.completed ? "line-through" : "" }}
     >
       {task.title}
@@ -30,7 +31,8 @@ const Task = (props) => {
 };
 
 function Todo() {
-  const [tasks, setTasks] = useState([ //function returns an array with two elements
+  const [tasks, setTasks] = useState([
+    //function returns an array with two elements
     {
       title: "This is a demo task",
       completed: false,
@@ -39,7 +41,7 @@ function Todo() {
     {
       title: "Write Some Code",
       completed: false,
-      progress:false
+      progress: false,
     },
     {
       title: "Watch a TV Series",
@@ -84,7 +86,9 @@ function Todo() {
   //To monitor the number tasks in progress
   //the task which is added new basically will be in progress and unfinished task
   useEffect(() => {
-    setTasksInProgress(tasks.filter((task) => !task.completed && task.progress).length);
+    setTasksInProgress(
+      tasks.filter((task) => !task.completed && task.progress).length
+    );
   }, [tasks]);
 
   return (
@@ -92,8 +96,12 @@ function Todo() {
       <div className="header">TODAY'S-TASKS</div>
       <div className="button-flex">
         <div className="button task-count">Pending tasks ({tasksPending})</div>
-        <div className="button task-count">Completed tasks ({tasksCompleted})</div>
-        <div className="button task-count">In progress tasks ({tasksInprogress})</div>
+        <div className="button task-count">
+          Completed tasks ({tasksCompleted})
+        </div>
+        <div className="button task-count">
+          In progress tasks ({tasksInprogress})
+        </div>
       </div>
       <div className="tasks">
         {tasks.map((task, index) => (

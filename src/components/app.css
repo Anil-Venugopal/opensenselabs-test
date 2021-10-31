@@ -1,3 +1,4 @@
+ /* All the styling of our app here*/
 body {
     background: rgb(250, 249, 249);
   }
@@ -11,6 +12,8 @@ body {
     color: white;
     border: 3px solid rgb(36, 110, 194);
   }
+
+/* To make our task container responsive over different devices */
   @media only screen and (max-width: 600px) {
     .todo-container{
       width: 100vh;
@@ -23,7 +26,7 @@ body {
       height:100vh;
     }
   }
-  
+ /* end of responsive css  */
   .task {
     border: 1px solid white;
     border-radius: 5px;
@@ -55,6 +58,8 @@ body {
     border: none;
     padding: 0.7em;
   }
+  
+ /* our Task monitor styling  */
   .button-flex{
     display:flex;
     justify-content: space-between;

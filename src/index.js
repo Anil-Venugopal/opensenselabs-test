@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Todo from './components/Todo';
+import Todo from './components/Todo';//The component that we need to render on the web
 
 ReactDOM.render(
   <React.StrictMode>

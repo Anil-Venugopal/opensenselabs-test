@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './app.css';
 
-
+//component for creating a new task
  const AddTask=(props) =>{
      const {addTask}=props;
     const [value, setValue] = useState("");
