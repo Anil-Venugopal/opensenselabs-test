@@ -20,6 +20,7 @@ const Task = (props) => {
         x
       </button>
       {task.completed ? (
+        //Check whether task completed or in progress state before writing content
         <button onClick={() => completeTask(index)}>Completed</button>
       ) : (
         <button onClick={() => completeTask(index)}>Complete</button>
@@ -29,51 +30,61 @@ const Task = (props) => {
 };
 
 function Todo() {
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState([ //function returns an array with two elements
     {
       title: "This is a demo task",
       completed: false,
-      removed: false,
+      progress: false,
     },
     {
       title: "Write Some Code",
       completed: false,
+      progress:false
     },
     {
       title: "Watch a TV Series",
       completed: false,
-      removed: false,
+      progress: false,
     },
   ]);
   const [tasksPending, setTasksPending] = useState(0);
   const [tasksCompleted, setTasksCompleted] = useState(0);
-  const [tasksRemoved, setTasksRemoved] = useState(0);
+  const [tasksInprogress, setTasksInProgress] = useState(0);
 
+  //included the addTask method here
   const addTask = (title) => {
-    const newTasks = [...tasks, { title, completed: false, removed: false }];
+    const newTasks = [...tasks, { title, completed: false, progress: true }];
     setTasks(newTasks);
   };
 
+  //included the completeTask method here
   const completeTask = (index) => {
     const newTasks = [...tasks];
     newTasks[index].completed = true;
     setTasks(newTasks);
   };
+
+  //included the removeTask method here
   const removeTask = (index) => {
     const newTasks = [...tasks];
     newTasks.splice(index, 1);
     setTasks(newTasks);
   };
+
+  //To monitor the number of uncompleted tasks
   useEffect(() => {
     setTasksPending(tasks.filter((task) => !task.completed).length);
   }, [tasks]);
 
+  //To monitor the number of completed tasks
   useEffect(() => {
     setTasksCompleted(tasks.filter((task) => task.completed).length);
   }, [tasks]);
 
+  //To monitor the number tasks in progress
+  //the task which is added new basically will be in progress and unfinished task
   useEffect(() => {
-    setTasksRemoved(tasks.filter((task) => task.removed).length);
+    setTasksInProgress(tasks.filter((task) => !task.completed && task.progress).length);
   }, [tasks]);
 
   return (
@@ -82,7 +93,7 @@ function Todo() {
       <div className="button-flex">
         <div className="button task-count">Pending tasks ({tasksPending})</div>
         <div className="button task-count">Completed tasks ({tasksCompleted})</div>
-        <div className="button task-count">In progress tasks ({tasksRemoved})</div>
+        <div className="button task-count">In progress tasks ({tasksInprogress})</div>
       </div>
       <div className="tasks">
         {tasks.map((task, index) => (
